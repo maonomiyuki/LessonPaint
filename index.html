@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LessonPaint MVP v2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="toolbar">
+      <div class="group">
+        <label>W <input id="docWidth" type="number" min="64" max="4096" value="1024" /></label>
+        <label>H <input id="docHeight" type="number" min="64" max="4096" value="768" /></label>
+        <button id="newDocBtn">新規</button>
+      </div>
+      <div class="group">
+        <select id="toolSelect">
+          <option value="pen">ペン</option>
+          <option value="airbrush">エアブラシ</option>
+          <option value="eraser">消しゴム</option>
+          <option value="fill">塗りつぶし</option>
+          <option value="line">直線</option>
+          <option value="rect">矩形</option>
+          <option value="circle">円</option>
+          <option value="polygon">多角形</option>
+          <option value="select">選択</option>
+          <option value="move">移動</option>
+        </select>
+        <label>色 <input id="colorInput" type="color" value="#000000" /></label>
+        <label>太さ <input id="sizeInput" type="range" min="1" max="120" value="8" /></label>
+        <label>不透明度 <input id="alphaInput" type="range" min="0.01" max="1" step="0.01" value="1" /></label>
+        <label><input id="mouseDrawToggle" type="checkbox" checked /> マウス描画許可</label>
+      </div>
+      <div class="group">
+        <button id="undoBtn" disabled>Undo</button>
+        <button id="redoBtn" disabled>Redo</button>
+        <button id="confirmShapeBtn">図形確定</button>
+        <button id="clearSelectionBtn">選択解除</button>
+      </div>
+      <div class="group">
+        <input id="importInput" type="file" accept="image/*" />
+        <button id="exportBtn">PNG書き出し</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="layers">
+        <h2>レイヤー</h2>
+        <div class="layer-actions">
+          <button id="addLayerBtn">追加</button>
+          <button id="deleteLayerBtn">削除</button>
+        </div>
+        <div class="layer-meta">
+          <label>Opacity <input id="layerOpacity" type="range" min="0" max="1" step="0.01" value="1" /></label>
+          <label>Blend
+            <select id="layerBlend">
+              <option value="source-over">normal</option>
+              <option value="multiply">multiply</option>
+              <option value="screen">screen</option>
+              <option value="overlay">overlay</option>
+            </select>
+          </label>
+        </div>
+        <ul id="layerList"></ul>
+      </aside>
+
+      <section class="canvas-wrap" id="canvasWrap">
+        <canvas id="viewCanvas"></canvas>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
